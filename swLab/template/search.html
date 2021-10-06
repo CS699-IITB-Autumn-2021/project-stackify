@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="block">
+        <span>
+            <button onclick="location.href='{% url 'login' %}'" class="btn my-btn" style="margin-bottom: 1vw;">Login</button>
+        </span>
+        <span style="float: right;">
+            <button onclick="location.href='{% url 'register' %}'" class="btn my-btn" style="margin-bottom: 1vw;">Register</button>
+        </span>
+        <form>
+            <div class="form-group">
+                <div class="row">
+                    <div class=" col-lg-9 col-xl-9">
+                        <div class="dropdown" style="margin-bottom: 1vw;">
+                            <button type="button" class="btn search-btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                                Job title here
+                            </button>
+                            <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu1">
+                                <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Analyst</button>
+                                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Science</button>
+                                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Hnadling</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-1 col-xl-1">
+                        <button class="btn my-btn" style="margin-bottom: 1vw; float: left;width:100%">Search</button>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6 col-lg-2 col-xl-2">
+                        <div class="dropdown" style="margin-bottom: 1vw;float: right;width:100%">
+                            <button type="button" class="btn my-btn dropdown-toggle" style="width:100%" data-toggle="dropdown">
+                                Select State
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Madhya Pradesh</a>
+                                <a class="dropdown-item" href="#">Uttar Pradesh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </form>
+    </div>
+    <div class="block">
+        <div class="row">
+            <div class="col">
+                <h3>Job name</h3>
+                <h5>Company name</h5>
+                <h6 style="color: #8d448b;">State name</h6>
+            </div>
+            <div class="col">
+                <br>
+                <h6>Expirience:<span style="color: #8d448b;">NA</span></h6>
+                <h6>Salary range:<span style="color: #8d448b;">NA</span></h6>
+                <button class="btn my-btn">Click here to apply</button>
+            </div>
+        </div>
+        <hr>
+        <h6>Content Content Content Content Content Content Content Content Content Content Content Content </h6>
+    </div>
+    <div class="block">
+        <div class="row">
+            <div class="col">
+                <h3>Job name</h3>
+                <h5>Company name</h5>
+                <h6 style="color: #8d448b;">State name</h6>
+            </div>
+            <div class="col">
+                <br>
+                <h6>Expirience:<span style="color: #8d448b;">NA</span></h6>
+                <h6>Salary range:<span style="color: #8d448b;">NA</span></h6>
+                <button class="btn my-btn">Click here to apply</button>
+            </div>
+        </div>
+        <hr>
+        <h6>Content Content Content Content Content Content Content Content Content Content Content Content </h6>
+    </div>
+    <div class="block">
+        <div class="row">
+            <div class="col">
+                <h3>Job name</h3>
+                <h5>Company name</h5>
+                <h6 style="color: #8d448b;">State name</h6>
+            </div>
+            <div class="col">
+                <br>
+                <h6>Expirience:<span style="color: #8d448b;">NA</span></h6>
+                <h6>Salary range:<span style="color: #8d448b;">NA</span></h6>
+                <button class="btn my-btn">Click here to apply</button>
+            </div>
+        </div>
+        <hr>
+        <h6>Content Content Content Content Content Content Content Content Content Content Content Content </h6>
+    </div>
+{% endblock %}
