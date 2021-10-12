@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
+from datetime import date, datetime
 
 # Create your models here.
 
@@ -22,4 +23,4 @@ class Job(models.Model):
     link=models.CharField(max_length=200)
     experience=models.CharField(max_length=30)
     content=models.CharField(max_length=200)
-
+    date=models.DateField(blank=True,default=date.today)
