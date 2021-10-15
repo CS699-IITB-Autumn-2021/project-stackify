@@ -1,0 +1,52 @@
+{% extends 'form_base.html' %}
+
+{% block contentChild %}
+<h2>JobHunt</h2>
+<div class="row">
+    <div class="col">
+        <form action="login">
+            <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:left">Login</button>
+        </form>
+    </div>
+    <div class="col">
+        <form action="register">
+            <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:right">Register</button>
+        </form>
+    </div>
+</div>
+<form action="search" method="get">
+    <!-- {% csrf_token %} -->
+    <div class="form-group">
+        <div class="dropdown" style="margin-bottom: 1vw;">
+            <button type="button" class="btn search-btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                Job title here
+            </button>
+            <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu1">
+                <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput"onkeyup="filterFunction()">
+                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Analyst</button>
+                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Science</button>
+                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Handling</button>
+            </div>
+            <input type="text" id="role" name="role" hidden>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <button type="submit" class="btn my-btn" style="margin-bottom: 1vw; float: left;width:100%">Search</button>
+            </div>
+            <div class="col-6">
+                <div class="dropdown" style="margin-bottom: 1vw;float: right;width:100%">
+                    <!-- <button type="button" class="btn my-btn dropdown-toggle" style="width:100%" data-toggle="dropdown">
+                        Select State
+                    </button> -->
+                    <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city">
+                        <option value="Hyderabad" selected>Hyderabad</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    </select>
+                </div>
+            </div>
+        </div>            
+    </div>
+</form>
+
+{% endblock %}
