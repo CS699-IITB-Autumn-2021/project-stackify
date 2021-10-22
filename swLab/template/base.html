@@ -92,6 +92,9 @@
         toggle between hiding and showing the dropdown content */
         function showGenre(item) {
             document.getElementById("dropdownMenu1").innerHTML = item.innerHTML;
+            document.getElementById("role").value=item.innerText;
+            console.log(document.getElementById("role").value)
+            //.innerText=item.innerText;           
         }
         function showGenre1(item) {
             document.getElementById("dropdownMenu11").innerHTML = item.innerHTML;
