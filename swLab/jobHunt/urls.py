@@ -1,3 +1,9 @@
+"""
+urls.py
+------------------------------------------------------------
+Takes the url request made by the user and redirect it to the corresponding views
+"""
+
 from django.urls import path
 from django.urls.resolvers import URLPattern
 
