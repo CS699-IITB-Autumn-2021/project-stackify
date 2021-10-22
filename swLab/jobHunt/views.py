@@ -37,10 +37,7 @@ def search(request):
     res_jobs=Job.objects.filter(tag=role,location=city)
     jobs=[]
     for job in res_jobs:
-        if int(job.experience)<2:
-            exp=job.experience+" year"
-        else:
-            exp=job.experience+" years"
+        exp=job.experience+" years"
         jobs.append({"name":job.job_title,"company":job.company,"loc":job.location,"sal":job.salary_range,"link":job.link,"exp":exp,
         "content":job.content
         })
