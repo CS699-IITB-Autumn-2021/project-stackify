@@ -108,4 +108,4 @@ def get_data(link_desc , database):
 
 # print(database.to_string())
 # driver.quit()
-get_url()
+# get_url()
