@@ -5,10 +5,15 @@ views.py
 Takes the request from urls.py and returns the corresponding views to the user on front end. View is responsible for all the operations being performed during the transfer of control from one webpage to another.
 """
 
-from django.shortcuts import render
-from django.http import HttpResponse
-from jobHunt.models import Job
+from django.contrib import messages
+from django.shortcuts import redirect, render
+from jobHunt.models import Job,Seeker,Job_preference
+from django.contrib.auth.models import auth
+from django.urls import resolve
+
 # Create your views here.
+locations=["All","Hyderabad","Madhya Pradesh","Uttar Pradesh"]
+titles=["Data Science","Data Analyst","Data Handling","Software Developer"]
 def index(request):
     """
     Redirect the user to the index.html page that is home page of the website.
@@ -19,7 +24,9 @@ def index(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
-    return render(request,"index.html")
+   
+    return render(request,"index.html",{'loc':locations,'titles':titles})
+    
 
 def search(request):
     """
@@ -33,8 +40,15 @@ def search(request):
     """
     role=request.GET.get("role")
     city=request.GET.get("city")
-    print(role,city)
-    res_jobs=Job.objects.filter(tag=role,location=city)
+    if(role=="" and city=="All"):
+        print("here")
+        res_jobs=Job.objects.all()[:10]
+    elif(role=="" and city!="All"):
+        res_jobs=Job.objects.filter(location=city)
+    elif(city=="All"):
+        res_jobs=Job.objects.filter(tag=role)
+    else:
+        res_jobs=Job.objects.filter(tag=role,location=city)
     jobs=[]
     for job in res_jobs:
         exp=job.experience+" years"
@@ -42,7 +56,7 @@ def search(request):
         "content":job.content
         })
     print(jobs)
-    return render(request,"search.html",{'jobs':jobs})
+    return render(request,"search.html",{'jobs':jobs,'titles':titles,'loc':locations})
 
 def login(request):
     """
@@ -54,6 +68,10 @@ def login(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if request.session['loggedin']:
+        return redirect('/index')
+    if request.method=="POST":
+        return verify_login(request)
     return render(request,"login.html")
 
 def verify_login(request):
@@ -66,7 +84,20 @@ def verify_login(request):
     :return: response - index.html, login.html
     :return type: HttpResponse
     """
-    return render(request,"index.html")
+    email=request.POST.get("email")
+    password=request.POST.get("password")
+    seeker=Seeker.objects.filter(email=email,password=password)
+    if seeker.exists():
+        # response =redirect('/index')
+        # response.set_cookie('loggedin','true')
+        request.session['loggedin']=True
+        request.session['email']=email
+        #auth.login(request,seeker)
+        return redirect('/index')
+    else:
+        messages.info(request, 'Invalid Credentials !!')
+        print("not there")
+        return render(request,'login.html')
 
 def register(request):
     """
@@ -78,7 +109,12 @@ def register(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
-    return render(request,"register.html")
+    location=locations[:]
+    location[0]='No'
+    if request.method=="POST":
+        return verify_register(request)
+    else:
+        return render(request,"register.html",{'loc':location,'titles':titles})
 
 def verify_register(request):
     """
@@ -90,7 +126,49 @@ def verify_register(request):
     :return: response - index.html,register.html
     :return type: HttpResponse
     """
-    return render(request,"index.html")
+    location=locations[:]
+    location[0]='No'
+    email=request.POST.get("email")
+    password=request.POST.get("password")
+    cpassword=request.POST.get("cpassword")
+    city1=request.POST.get("city1")
+    city2=request.POST.get("city2")
+    city3=request.POST.get("city3")
+    if(city1=='No'):
+        city1=None
+    if(city2=='No'):
+        city2=None
+    if(city3=='No'):
+        city3=None
+    selected_titles=[]
+    selected_cities=[]
+    selected_titles.extend([request.POST.get("title1"),request.POST.get("title2"),request.POST.get("title3")])
+    selected_titles=list(filter(lambda x: x!='',selected_titles))
+    print(selected_titles,selected_cities)
+    errors=[]
+    if Seeker.objects.filter(email=email).exists():
+        errors.append('User already Exists. Please use another email id !')
+        return render(request,"register.html",{'loc':location,'titles':titles,'errors':errors})
+    if password!=cpassword:
+        errors.append('Passwords entered are not same !')
+        return render(request,"register.html",{'loc':location,'titles':titles,'errors':errors})
+    if len(selected_titles)==0:
+        errors.append('Please select atleast one job preference')
+        return render(request,"register.html",{'loc':location,'titles':titles,'errors':errors})
+    seeker=Seeker()
+    seeker.email=email
+    seeker.password=password
+    seeker.location1=city1
+    seeker.location2=city2
+    seeker.location3=city3
+    s=seeker.save()
+    for i in selected_titles:
+        pref=Job_preference(email=seeker,job_title=i)
+        pref.save()
+    print(seeker)
+    return redirect('/login')
+
+    #return render(request,"index.html")
 
 def update(request):
     """
@@ -102,7 +180,13 @@ def update(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
-    return render(request,"update.html")
+    if not request.session['loggedin']:
+        return redirect('/login')
+    if request.method=="POST":
+        return make_update(request)
+    location=locations[:]
+    location[0]="No"
+    return render(request,"update.html",{'loc':location,'titles':titles})
     
 def make_update(request):
     """
@@ -114,5 +198,56 @@ def make_update(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
-    return render(request,"index.html")
+    if not request.session['loggedin']:
+        return redirect('/login')
+    location=locations[:]
+    location[0]='No'
+    email=request.POST.get("email")
+    print(email)
+    city1=request.POST.get("city1")
+    city2=request.POST.get("city2")
+    city3=request.POST.get("city3")
+    if(city1=='No'):
+        city1=None
+    if(city2=='No'):
+        city2=None
+    if(city3=='No'):
+        city3=None
+    print(city3,city2,city1)
+    selected_titles=[]
+    selected_titles.extend([request.POST.get("title1"),request.POST.get("title2"),request.POST.get("title3")])
+    selected_titles=list(filter(lambda x: x!='',selected_titles))
+    print(selected_titles)
+    errors=[]
+    seeker=Seeker.objects.filter(email=email)
+    if not seeker.exists():
+        errors.append('User not Exists. Please enter correct email id !')
+        return render(request,"update.html",{'loc':location,'titles':titles,'errors':errors})
+    if len(selected_titles)==0:
+        errors.append('Please select atleast one job preference')
+        return render(request,"update.html",{'loc':location,'titles':titles,'errors':errors})
+    seeker=seeker[0]
+    seeker.location1=city1
+    seeker.location2=city2
+    seeker.location3=city3
+    seeker.save()
+    preferences=Job_preference.objects.filter(email_id=seeker)
+    preferences.delete()
+    for i in selected_titles:
+        pref=Job_preference(email=seeker,job_title=i)
+        pref.save()
+    return redirect('/index')
+
+def logout(request):
+    """
+    Make changes made by the user in the update form.
+    
+    :param name: request - request generated by the user.
+    :param type: object of HttpRequest
+    
+    :return: response - index.html page
+    :return type: HttpResponse
+    """
+    request.session['loggedin']=False
+    return redirect('/')
 

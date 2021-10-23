@@ -3,15 +3,31 @@
 {% block contentChild %}
 <h2>JobHunt</h2>
 <div class="row">
+    {% if request.session.loggedin == False %}
     <div class="col">
         <form action="login">
             <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:left">Login</button>
         </form>
     </div>
+    {% else %}
     <div class="col">
+        <form action="logout">
+            <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:left">Logout</button>
+        </form>
+    </div>
+    {%endif%}
+    <div class="col">
+        {% if request.session.loggedin == False %}
         <form action="register">
             <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:right">Register</button>
         </form>
+        {% else %}
+    <div class="col">
+        <form action="update">
+            <button type="submit" class="btn my-btn" style="margin-bottom: 1vw;float:right">Update Preferences</button>
+        </form>
+    </div>
+        {%endif%}
     </div>
 </div>
 <form action="search" method="get">
@@ -23,9 +39,9 @@
             </button>
             <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu1">
                 <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput"onkeyup="filterFunction()">
-                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Analyst</button>
-                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Science</button>
-                <button class="dropdown-item" type="button" onclick="showGenre(this)">Data Handling</button>
+                {% for title in titles %}
+                <button class="dropdown-item" type="button" onclick="showGenre(this)">{{title}}</button>
+                {% endfor %}
             </div>
             <input type="text" id="role" name="role" hidden>
         </div>
@@ -39,9 +55,9 @@
                         Select State
                     </button> -->
                     <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city">
-                        <option value="Hyderabad">Hyderabad</option>
-                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        {% for location in loc %}
+                        <option value = "{{location}}" >{{location}}</option>
+                        {% endfor %}
                     </select>
                 </div>
             </div>

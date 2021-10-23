@@ -21,21 +21,22 @@ class Seeker(models.Model):
     :param name: location3 - third location preference
     :param type: string
     """
-    email=models.CharField(max_length=100)
-    location1=models.CharField(max_length=100)
-    location2=models.CharField(max_length=100)
-    location2=models.CharField(max_length=100)
+    email=models.EmailField(max_length=100,unique=True)
+    password=models.CharField(max_length=100)
+    location1=models.CharField(max_length=100,null=True)
+    location2=models.CharField(max_length=100,null=True)
+    location3=models.CharField(max_length=100,null=True)
 
 class Job_preference(models.Model):
     """
     class Job_preference: Strores the mapping of job preference of user with user mail id.
     :param name: email - foreign key to email in Seeker table.
-    :param type: string
+    :param type: string 
     :param name: job_title - job preference of the user
     :param type: string 
     """
-    email=models.ForeignKey(Seeker,on_delete=models.CASCADE)
     job_title=models.CharField(max_length=30)
+    email=models.ForeignKey(Seeker,on_delete=models.CASCADE)
 
 class Job(models.Model):
     """
