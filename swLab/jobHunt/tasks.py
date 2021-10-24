@@ -1,3 +1,8 @@
+"""
+tasks.py
+-------------------------------------------------------
+All the parsers and notification engine is kept in this file
+"""
 from celery import shared_task
 from jobHunt.models import Job
 from django.core.mail import send_mail
@@ -17,7 +22,20 @@ driver = webdriver.Chrome(ChromeDriverManager().install())
 
 #naukri parser
 def n_get_url(position , location , pagenumber):
-    """Generate URL for particular job location and preference"""
+    """
+    Get the url for naukri search.
+    
+    :param name: position
+    :param type:
+    
+    :param name: location
+    :param type:
+    
+    :param name: pagenumber
+    :param type: 
+    
+    :return: None
+    """
     template = "https://www.naukri.com/{}-jobs-in-{}-{}"
     url = template.format(position,location,pagenumber)
     print(url)
@@ -25,6 +43,17 @@ def n_get_url(position , location , pagenumber):
 
 
 def n_get_links(url , tag ):
+    """
+    Get the link to each naukri search result (job).
+    
+    :param name: url
+    :param type:
+    
+    :param name: tag
+    :param type:
+    
+    :return: None
+    """
     for i in range(0,1): 
     
         driver.get(url)
@@ -46,7 +75,17 @@ def n_get_links(url , tag ):
 
 
 def n_get_data(link_desc , tag):
-
+    """
+    Scrap the jobs in the search result.
+    
+    :param name: link_desc
+    :param type:
+    
+    :param name: tag
+    :param type:
+    
+    :return: None
+    """
     for lnk in link_desc["link"]:
         # print(lnk)
         try:
@@ -102,7 +141,17 @@ def n_get_data(link_desc , tag):
 
 #indeed parser
 def i_get_url(position , location):
-    """Generate URL for particular job location and preference"""
+    """
+    Get the url for indeed search.
+    
+    :param name: position
+    :param type:
+    
+    :param name: location
+    :param type:
+    
+    :return: None
+    """
     template = "https://in.indeed.com/jobs?q={}&l={}&start={}"
     start = 0
     url=[]
@@ -112,6 +161,17 @@ def i_get_url(position , location):
     i_get_links(url , position)
 
 def i_get_links(url , tag):
+    """
+    Get the link to each indeed search result (job).
+    
+    :param name: url
+    :param type:
+    
+    :param name: tag
+    :param type:
+    
+    :return: None
+    """
     for i in url: 
         driver.get(i)
         lst=driver.find_element_by_class_name("mosaic-provider-jobcards")
@@ -122,53 +182,67 @@ def i_get_links(url , tag):
     
 
 def i_get_data(link_desc ,tag):
-        for lnk in link_desc["link"]:
-                driver.get(lnk)
-                time.sleep(3)
-                date_on_which_jobposted = driver.find_element_by_class_name("jobsearch-JobMetadataFooter").text
-                date=""
-                reqdate = datetime.datetime.now()
-                for ele in date_on_which_jobposted:
-                    if(ele.isdigit()):
-                        date+=ele
-                if(not date):
-                    reqdate = datetime.datetime.now()
-                elif(int(date) >= 7):
-                    continue
-                else:
-                    tod = datetime.datetime.now()
-                    d = datetime.timedelta(days = int(date))
-                    reqdate = tod - d
-                print(reqdate)        
-                role = driver.find_element_by_class_name("icl-u-xs-mb--xs").text
-                company = driver.find_element_by_class_name("icl-u-lg-mr--sm").text
-                location = driver.find_elements_by_class_name("icl-u-xs-mt--xs")
-                curent_location = location[0].text.split("\n")[1] 
-                print(curent_location)
-                try:
-                    salary = driver.find_element_by_class_name("jobsearch-JobMetadataHeader-item").text
-                except:
-                    salary = "Not Disclosed"
-                link_job = lnk
-                jobDecsription = driver.find_element_by_class_name("jobsearch-jobDescriptionText").text
-                index_for_exp_field = jobDecsription.find('Experience')
-                exp = "Not mentioned"
-                if(index_for_exp_field != -1):
-                    lowercase_str = jobDecsription[index_for_exp_field + len('Experience') :len(jobDecsription)].lower()
-                    list = [m.start() for m in re.finditer('year', lowercase_str)]
-                    if(list):
-                        start = list[0]
-                        for i in reversed(list):
-                            if(lowercase_str[i-2].isdigit()):
-                                exp = lowercase_str[start - 2:i+4]
-                                break
-                
-                a = Job(job_title = role ,tag  = tag , company = company , location = curent_location,salary_range = salary,link = lnk,
-                experience = exp,content = jobDecsription,date = reqdate )
-                a.save()
+    """
+    Scrap the jobs in the search result.
+    
+    :param name: link_desc
+    :param type:
+    
+    :param name: tag
+    :param type:
+    
+    :return: None
+    """
+    for lnk in link_desc["link"]:
+        driver.get(lnk)
+        time.sleep(3)
+        date_on_which_jobposted = driver.find_element_by_class_name("jobsearch-JobMetadataFooter").text
+        date=""
+        reqdate = datetime.datetime.now()
+        for ele in date_on_which_jobposted:
+            if(ele.isdigit()):
+                date+=ele
+        if(not date):
+            reqdate = datetime.datetime.now()
+        elif(int(date) >= 7):
+            continue
+        else:
+            tod = datetime.datetime.now()
+            d = datetime.timedelta(days = int(date))
+            reqdate = tod - d
+        print(reqdate)        
+        role = driver.find_element_by_class_name("icl-u-xs-mb--xs").text
+        company = driver.find_element_by_class_name("icl-u-lg-mr--sm").text
+        location = driver.find_elements_by_class_name("icl-u-xs-mt--xs")
+        curent_location = location[0].text.split("\n")[1] 
+        print(curent_location)
+        try:
+            salary = driver.find_element_by_class_name("jobsearch-JobMetadataHeader-item").text
+        except:
+            salary = "Not Disclosed"
+        link_job = lnk
+        jobDecsription = driver.find_element_by_class_name("jobsearch-jobDescriptionText").text
+        index_for_exp_field = jobDecsription.find('Experience')
+        exp = "Not mentioned"
+        if(index_for_exp_field != -1):
+            lowercase_str = jobDecsription[index_for_exp_field + len('Experience') :len(jobDecsription)].lower()
+            list = [m.start() for m in re.finditer('year', lowercase_str)]
+            if(list):
+                start = list[0]
+                for i in reversed(list):
+                    if(lowercase_str[i-2].isdigit()):
+                        exp = lowercase_str[start - 2:i+4]
+                        break
+        
+        a = Job(job_title = role ,tag  = tag , company = company , location = curent_location,salary_range = salary,link = lnk,
+        experience = exp,content = jobDecsription,date = reqdate )
+        a.save()
 
 #notification
 def notify():
+    """
+    Sends notifications to the users registered.
+    """
     for user in Job_preference.objects.all():
         person=Seeker.objects.filter(email=user.email)
         person=person[0]
@@ -196,6 +270,9 @@ def notify():
 
 @shared_task
 def periodic_update():
+    """
+    Periodically schedule the web scrapper and notifier every day.
+    """
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(ChromeDriverManager().install())
     jobs_tags = [ "data-handling","senior-developer" , "senior-accountant" , "HR" ] 

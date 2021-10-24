@@ -1,3 +1,8 @@
+"""
+celery.py
+--------------------------------------------------------------------
+Add the celery app to the site and all the settings of celery are given here.
+"""
 import os
 from django.conf import settings
 from celery import Celery
