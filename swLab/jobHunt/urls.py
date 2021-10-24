@@ -18,5 +18,6 @@ urlpatterns = [
     path('verify_register',views.verify_register,name='verify_register'),
     path('make_update',views.make_update,name='make_update'),
     path('register',views.register,name='register'),
-    path('update',views.update,name='update')
+    path('update',views.update,name='update'),
+    path('logout',views.logout,name='logout')
 ]
