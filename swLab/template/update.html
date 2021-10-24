@@ -15,6 +15,10 @@
     {% else %}
         <input class="my-input" name ="email" type="text" placeholder="Email" required>
     {% endif %}
+<h2>Register</h2>
+<form action="make_update">
+    <a href="login" class="pink">Update Profile</a>
+    <input class="my-input" type="text" placeholder="Email">
     <div id="Jobs">
         <br>
         <p>Select atleast one job preferences for getting notification.</p>
@@ -90,4 +94,7 @@
     </div>
 </form>
 
+{% endblock %}
+    <button type="submit" class="btn my-btn" style="width: 80%;">Register</button>   
+</form>
 {% endblock %}
