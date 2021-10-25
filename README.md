@@ -11,8 +11,8 @@ Our idea is to Design a job search engine which will display jobs available on v
 **flexible to changes**
 
 # Technology Stack
-|FrontEnd                        |BackEnd                      |
-|----------------|-------------------------------|-----------------------------|
+| FrontEnd | BackEnd | 
+|-----------|:-----------:| 
 |**HTML**            |**Python**           |
 |**CSS**            |**SQLite3**          |
  |**JS**|**Selenium**|
@@ -30,8 +30,11 @@ Our idea is to Design a job search engine which will display jobs available on v
 Adding steps of requirements.txt
 
 # Teams Details
->Aishwarya Mishra
+
+Aishwarya Mishra
+
 Rupasai Rangaraju
+
 Subodh Shantaram Latkar
 
 # Documentation
