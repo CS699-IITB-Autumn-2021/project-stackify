@@ -1,3 +1,10 @@
+"""
+naukri_parser
+---------------------------------------------------------
+webscrapping code of naukri.com.The approach is ,for each job preference get all jobs links available on that page
+and then for each job get the relevant feilds.
+"""
+
 import time
 import datetime
 from selenium import webdriver
@@ -5,36 +12,41 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 from jobHunt.models import Job
-# adding code to add data into database
+
 
 options = webdriver.ChromeOptions()
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
 
-# database ={"Title":[],
-#     "Tag":[],
-#      "Company":[],
-#      "Location":[],
-#      "Salary":[],
-#      "Link":[],
-#      "Experience":[],
-#      "Content":[],
-#      "day":[]
-#      }
-
-
 jobs_tags = [ "data-handling","senior-developer" , "senior-accountant" , "HR" ] 
-# , "senior-accountant" , "HR"
+
 def get_url(position , location , pagenumber):
     
-    """Generate URL for particular job location and preference"""
+    '''
+    Make URL for  jobs present in particular job and location preferences on a given page number.
+    :param name:position - string representation of job preferences
+    :param type:string
+    :param name:location - name of location where job requested
+    :param type:string
+    :param name:pagenumber - pagenumber from which data is collected
+    :param type:int
+
+    '''
     template = "https://www.naukri.com/{}-jobs-in-{}-{}"
     url = template.format(position,location,pagenumber)
-    print(url)
+    # print(url)
     get_links(url ,position)
 
 
 def get_links(url , tag ):
+
+    '''
+    Get URLs of all jobs presented for particular job and tag preferences on a given page number.
+    :param name:url - string representation of weblink
+    :param type:string
+    :param name:tag - name of job preference
+    :param type:string representation of job preference
+    '''
     for i in range(0,1): 
     
         driver.get(url)
@@ -56,7 +68,13 @@ def get_links(url , tag ):
 
 
 def get_data(link_desc , tag):
-
+    '''
+    Extract data relevant data from jobs.
+    :param name:link_desc - links of various jobs available
+    :param type:list of links
+    :param name:tag - name of job preference
+    :param type:string representation of job preference
+    '''
     for lnk in link_desc["link"]:
         # print(lnk)
         try:
