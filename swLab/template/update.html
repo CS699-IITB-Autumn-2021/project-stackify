@@ -1,0 +1,100 @@
+{% extends 'form_base.html' %}
+
+{% block contentChild %}
+<h2>Update Preferences</h2>
+<form action="update" method="POST">
+    {%csrf_token%}
+    {% for error in errors %}
+     <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{error}}     
+    </div>
+      {% endfor %}
+    {% if request.session.loggedin and request.session.email %}
+        <input class="my-input" name ="email" type="text" placeholder="Email"  value={{request.session.email}} required readonly="true">
+    {% else %}
+        <input class="my-input" name ="email" type="text" placeholder="Email" required>
+    {% endif %}
+<h2>Register</h2>
+<form action="make_update">
+    <a href="login" class="pink">Update Profile</a>
+    <input class="my-input" type="text" placeholder="Email">
+    <div id="Jobs">
+        <br>
+        <p>Select atleast one job preferences for getting notification.</p>
+        <div class="dropdown my-dropdown">
+            <button type="button" class="btn search-btn dropdown-toggle" id="dropdownMenu11" data-toggle="dropdown">
+                Job title here
+            </button>
+            <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu1">
+                <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput"onkeyup="filterFunction()">
+                {% for title in titles %}
+                <button class="dropdown-item" type="button" onclick="showtitle(this)">{{title}}</button>
+                {% endfor %}
+            </div>
+            <input type="text" id="title1" name="title1" hidden>
+        </div>
+        <div class="dropdown my-dropdown">
+            <button type="button" class="btn search-btn dropdown-toggle" id="dropdownMenu12" data-toggle="dropdown">
+                Job title here
+            </button>
+            <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu12" onclick="filter(this)  ">
+                <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput"onkeyup="filterFunction()">
+                {% for title in titles %}
+                <button class="dropdown-item" type="button" onclick="showGenre2(this)">{{title}}</button>
+                {% endfor %}
+            </div>
+            <input type="text" id="title2" name="title2" hidden>
+        </div>
+        <div class="dropdown my-dropdown">
+            <button type="button" class="btn search-btn dropdown-toggle" id="dropdownMenu13" data-toggle="dropdown">
+                Job title here
+            </button>
+            <div class="dropdown-menu" id="myDropdown"  aria-labelledby="dropdownMenu13">
+                <input type="text" class="form-control" autocomplete="off" placeholder="Search.." id="myInput"onkeyup="filterFunction()">
+                {% for title in titles %}
+                <button class="dropdown-item" type="button" onclick="showGenre3(this)">{{title}}</button>
+                {% endfor %}
+            </div>
+            <input type="text" id="title3" name="title3" hidden>
+        </div>
+    </div>
+    
+    <div id="Jobs">
+        <br>
+        <p>Selecting location preferences is optional.</p>
+        <div class="dropdown my-dropdown">
+            <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city1" style="background-color: white; color:black">
+                {% for location in loc %}
+                <option value = "{{location}}" >{{location}}</option>
+                {% endfor %}
+            </select>
+    </div>
+    <div class="dropdown my-dropdown">
+        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city2" style="background-color: white; color:black">
+            {% for location in loc %}
+            <option value = "{{location}}" >{{location}}</option>
+            {% endfor %}
+        </select>
+</div>
+    <div class="dropdown my-dropdown">
+        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city3" style="background-color: white; color:black">
+            {% for location in loc %}
+            <option value = "{{location}}" >{{location}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn my-btn col" style="width: 50%">Update</button>
+        </div>
+        <div class="col">
+            <button type="button" onclick="location.href='{% url 'index' %}'" class="btn my-btn col" style="width: 50%">Cancel</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+    <button type="submit" class="btn my-btn" style="width: 80%;">Register</button>   
+</form>
+{% endblock %}

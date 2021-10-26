@@ -16,7 +16,7 @@ Our idea is to Design a job search engine which will display jobs available on v
 |**HTML**            |**Python**           |
 |**CSS**            |**SQLite3**          |
  |**JS**|**Selenium**|
- ||Djnago|
+ ||Django|
 
 # Deliverables
 

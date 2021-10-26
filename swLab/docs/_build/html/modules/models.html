@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Models &#8212; JobHunt  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Views" href="views.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-jobHunt.models">
+<span id="models"></span><h1>Models<a class="headerlink" href="#module-jobHunt.models" title="Permalink to this headline">¶</a></h1>
+<section id="models-py">
+<h2>models.py<a class="headerlink" href="#models-py" title="Permalink to this headline">¶</a></h2>
+<p>This contains all the db tables in the form of class to create a table instance we can just call this class’s object and add remove or update the database.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="jobHunt.models.Job">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">jobHunt.models.</span></span><span class="sig-name descname"><span class="pre">Job</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.models.Job" title="Permalink to this definition">¶</a></dt>
+<dd><p>class Job: Stores the jobs data crapped from job portals.
+:param name: job_title - used to identify the job category locally
+:param type: string
+:param name: tag - job tags scrapped from web
+:param type: string
+:param name: company - name of company
+:param type: string
+:param name: location - location scrapped from web
+:param type: string
+:param name: salary - salary scrapped from web
+:param type: string
+:param name: link - link to apply for job
+:param type: string
+:param name: experience - experience if any scrapped from web
+:param type: string
+:param name: content - content in the job card scrapped from web
+:param type: string
+:param name: date - date on which we added the job to the database
+:param type: object of date</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Job.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#jobHunt.models.Job.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Job.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#jobHunt.models.Job.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.company">
+<span class="sig-name descname"><span class="pre">company</span></span><a class="headerlink" href="#jobHunt.models.Job.company" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.content">
+<span class="sig-name descname"><span class="pre">content</span></span><a class="headerlink" href="#jobHunt.models.Job.content" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.date">
+<span class="sig-name descname"><span class="pre">date</span></span><a class="headerlink" href="#jobHunt.models.Job.date" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.experience">
+<span class="sig-name descname"><span class="pre">experience</span></span><a class="headerlink" href="#jobHunt.models.Job.experience" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jobHunt.models.Job.get_next_by_date">
+<span class="sig-name descname"><span class="pre">get_next_by_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=True</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.models.Job.get_next_by_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="jobHunt.models.Job.get_previous_by_date">
+<span class="sig-name descname"><span class="pre">get_previous_by_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">*</span></em>, <em class="sig-param"><span class="pre">field=&lt;django.db.models.fields.DateField:</span> <span class="pre">date&gt;</span></em>, <em class="sig-param"><span class="pre">is_next=False</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.models.Job.get_previous_by_date" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#jobHunt.models.Job.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.job_title">
+<span class="sig-name descname"><span class="pre">job_title</span></span><a class="headerlink" href="#jobHunt.models.Job.job_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.link">
+<span class="sig-name descname"><span class="pre">link</span></span><a class="headerlink" href="#jobHunt.models.Job.link" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.location">
+<span class="sig-name descname"><span class="pre">location</span></span><a class="headerlink" href="#jobHunt.models.Job.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#jobHunt.models.Job.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.salary_range">
+<span class="sig-name descname"><span class="pre">salary_range</span></span><a class="headerlink" href="#jobHunt.models.Job.salary_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job.tag">
+<span class="sig-name descname"><span class="pre">tag</span></span><a class="headerlink" href="#jobHunt.models.Job.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">jobHunt.models.</span></span><span class="sig-name descname"><span class="pre">Job_preference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.models.Job_preference" title="Permalink to this definition">¶</a></dt>
+<dd><p>class Job_preference: Strores the mapping of job preference of user with user mail id.
+:param name: email - foreign key to email in Seeker table.
+:param type: string
+:param name: job_title - job preference of the user
+:param type: string</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related object on the forward side of a many-to-one or
+one-to-one (via ForwardOneToOneDescriptor subclass) relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Child.parent</span></code> is a <code class="docutils literal notranslate"><span class="pre">ForwardManyToOneDescriptor</span></code> instance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.email_id">
+<span class="sig-name descname"><span class="pre">email_id</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.email_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.job_title">
+<span class="sig-name descname"><span class="pre">job_title</span></span><a class="headerlink" href="#jobHunt.models.Job_preference.job_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Job_preference.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#jobHunt.models.Job_preference.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">jobHunt.models.</span></span><span class="sig-name descname"><span class="pre">Seeker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.models.Seeker" title="Permalink to this definition">¶</a></dt>
+<dd><p>class Seeker: Stores infromation about the registered user and their location preference.
+:param name: email - Email id of the user is the primary key for Seeker table
+:param type: string
+:param name: location1 - first location preference
+:param type: string
+:param name: location2 - second location prefernce
+:param type: string
+:param name: location3 - third location preference
+:param type: string</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.DoesNotExist">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#jobHunt.models.Seeker.DoesNotExist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span> </em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#jobHunt.models.Seeker.MultipleObjectsReturned" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.email">
+<span class="sig-name descname"><span class="pre">email</span></span><a class="headerlink" href="#jobHunt.models.Seeker.email" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#jobHunt.models.Seeker.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.job_preference_set">
+<span class="sig-name descname"><span class="pre">job_preference_set</span></span><a class="headerlink" href="#jobHunt.models.Seeker.job_preference_set" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accessor to the related objects manager on the reverse side of a
+many-to-one relation.</p>
+<p>In the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Child</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="n">Parent</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Parent.children</span></code> is a <code class="docutils literal notranslate"><span class="pre">ReverseManyToOneDescriptor</span></code> instance.</p>
+<p>Most of the implementation is delegated to a dynamically defined manager
+class built by <code class="docutils literal notranslate"><span class="pre">create_forward_many_to_many_manager()</span></code> defined below.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.location1">
+<span class="sig-name descname"><span class="pre">location1</span></span><a class="headerlink" href="#jobHunt.models.Seeker.location1" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.location2">
+<span class="sig-name descname"><span class="pre">location2</span></span><a class="headerlink" href="#jobHunt.models.Seeker.location2" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.location3">
+<span class="sig-name descname"><span class="pre">location3</span></span><a class="headerlink" href="#jobHunt.models.Seeker.location3" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"> <span class="pre">=</span> <span class="pre">&lt;django.db.models.manager.Manager</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#jobHunt.models.Seeker.objects" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="jobHunt.models.Seeker.password">
+<span class="sig-name descname"><span class="pre">password</span></span><a class="headerlink" href="#jobHunt.models.Seeker.password" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for a deferred-loading field. When the value is read from this
+object the first time, the query is executed.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">JobHunt</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-me.html">All about me</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#models-py">models.py</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="views.html" title="previous chapter">Views</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Subodh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

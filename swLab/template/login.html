@@ -1,0 +1,28 @@
+{% extends 'form_base.html' %}
+
+{% block contentChild %}
+
+<h2>Login</h2>
+<form action="login" method="POST">
+    {% csrf_token %}
+    {% for msg in messages %}
+     <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            {{msg}}     
+    </div>
+    {% endfor %}
+    <input class="my-input" type="text" name ="email" placeholder="Email" required>
+    <input class="my-input" type="password" name="password" placeholder="Password" required>
+<form action="verify_login">
+    <input class="my-input" type="text" placeholder="Email">
+    <input class="my-input" type="password" placeholder="Password">
+    <br>
+    <a href="register" class="pink">New User</a>
+    <a class="pink" style="padding-left: 15vw;">Forgot Password</a>
+    <br>
+    <br>
+    <button type="submit" class="btn my-btn" style="width: 80%;">Login</button>
+    
+</form>
+
+{% endblock %}

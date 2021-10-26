@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Tasks &#8212; JobHunt  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Models" href="urls.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-jobHunt.tasks">
+<span id="tasks"></span><h1>Tasks<a class="headerlink" href="#module-jobHunt.tasks" title="Permalink to this headline">¶</a></h1>
+<section id="tasks-py">
+<h2>tasks.py<a class="headerlink" href="#tasks-py" title="Permalink to this headline">¶</a></h2>
+<p>All the parsers and notification engine is kept in this file</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.i_get_data">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">i_get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_desc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.i_get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scrap the jobs in the search result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – link_desc</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – tag</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.i_get_links">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">i_get_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.i_get_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the link to each indeed search result (job).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – url</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – tag</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.i_get_url">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">i_get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.i_get_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the url for indeed search.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – position</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – location</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.n_get_data">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">n_get_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_desc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.n_get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scrap the jobs in the search result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – link_desc</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – tag</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.n_get_links">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">n_get_links</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.n_get_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the link to each naukri search result (job).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – url</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – tag</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.n_get_url">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">n_get_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">location</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pagenumber</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.n_get_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the url for naukri search.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – position</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – location</p></li>
+<li><p><strong>type</strong> – </p></li>
+<li><p><strong>name</strong> – pagenumber</p></li>
+<li><p><strong>type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="jobHunt.tasks.notify">
+<span class="sig-prename descclassname"><span class="pre">jobHunt.tasks.</span></span><span class="sig-name descname"><span class="pre">notify</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#jobHunt.tasks.notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends notifications to the users registered.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">JobHunt</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="all-about-me.html">All about us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="views.html">Views</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urls.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tasks-py">tasks.py</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="urls.html" title="previous chapter">Models</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Subodh.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/modules/tasks.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
