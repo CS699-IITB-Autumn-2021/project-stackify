@@ -14,7 +14,7 @@ from selenium import webdriver
 import pandas as pd
 from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
-from jobHunt.models import Job,Job_preference
+from jobHunt.models import Job,Job_preference,Seeker
 import re
 
 options = webdriver.ChromeOptions()
@@ -172,6 +172,7 @@ def i_get_links(url , tag):
     
     :return: None
     """
+    link_desc={"link":[]}
     for i in url: 
         driver.get(i)
         lst=driver.find_element_by_class_name("mosaic-provider-jobcards")
@@ -243,25 +244,25 @@ def notify():
     """
     Sends notifications to the users registered.
     """
-    for user in Job_preference.objects.all():
-        person=Seeker.objects.filter(email=user.email)
-        person=person[0]
+    for user in Seeker.objects.all():
+        job_prefrences=Job_preference.objects.filter(email__id=user.id)
         mail_content="Hi aspirant!\n Here are some of the job notifications for you.\n"
         location=[]
-        if(person.location1!='NA'):
-            location.append(person.location1)
-        if(person.location2!='NA'):
-            location.append(person.location2)
-        if(person.location2!='NA'):
-            location.append(person.location2)
-        today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
-        today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
-        for job in Job.objects.filter(tag=user.job_title,date__range=(today_min, today_max)):
-            for l in location:
-                if(l in job.location):
-                    mail_content+="location: "+job.location+"\ncompany name: "+job.company+"\nlink to apply: "+job.link+"\n\n"
+        if(user.location1!='NA'):
+            location.append(user.location1)
+        if(user.location2!='NA'):
+            location.append(user.location2)
+        if(user.location2!='NA'):
+            location.append(user.location2)
+        for jp in job_prefrences: 
+            today_min = datetime.datetime.combine(datetime.date.today(), datetime.time.min)
+            today_max = datetime.datetime.combine(datetime.date.today(), datetime.time.max)
+            for job in Job.objects.filter(tag=jp.job_title,date__range=(today_min, today_max)):
+                for l in location:
+                    if(l in job.location):
+                        mail_content+="job title: "+job.tag+"\nlocation: "+job.location+"\ncompany name: "+job.company+"\nlink to apply: "+job.link+"\n\n"
         send_mail(
-            'jobHunt Notification: '+user.job_title,
+            'jobHunt: Job Notification',
             mail_content,
             'aish8102000@gmail.com',
             [user.email],
@@ -275,8 +276,8 @@ def periodic_update():
     """
     options = webdriver.ChromeOptions()
     driver = webdriver.Chrome(ChromeDriverManager().install())
-    jobs_tags = [ "data-handling","senior-developer" , "senior-accountant" , "HR" ] 
-    
+    jobs_tags = ["Data Science","Data Analyst","Data Handling","Software Developer","Nurse","Clerk","Software tester","HR","Manager"]
+    notify()
     for ele in jobs_tags:
         print(ele)
         for i in range(0,2):
@@ -288,4 +289,4 @@ def periodic_update():
         url = i_get_url(ele , 'India')
     driver.quit()
     
-    notify()
+    
