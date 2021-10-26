@@ -11,14 +11,10 @@
     </div>
       {% endfor %}
     {% if request.session.loggedin and request.session.email %}
-        <input class="my-input" name ="email" type="text" placeholder="Email"  value={{request.session.email}} required readonly="true">
+        <input class="my-input" name ="email" type="email" placeholder="Email"  value={{request.session.email}} required readonly="true">
     {% else %}
-        <input class="my-input" name ="email" type="text" placeholder="Email" required>
+        <input class="my-input" name ="email" type="email" placeholder="Email" required>
     {% endif %}
-<h2>Register</h2>
-<form action="make_update">
-    <a href="login" class="pink">Update Profile</a>
-    <input class="my-input" type="text" placeholder="Email">
     <div id="Jobs">
         <br>
         <p>Select atleast one job preferences for getting notification.</p>
@@ -69,20 +65,21 @@
                 <option value = "{{location}}" >{{location}}</option>
                 {% endfor %}
             </select>
-    </div>
-    <div class="dropdown my-dropdown">
-        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city2" style="background-color: white; color:black">
-            {% for location in loc %}
-            <option value = "{{location}}" >{{location}}</option>
-            {% endfor %}
-        </select>
-</div>
-    <div class="dropdown my-dropdown">
-        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city3" style="background-color: white; color:black">
-            {% for location in loc %}
-            <option value = "{{location}}" >{{location}}</option>
-            {% endfor %}
-        </select>
+        </div>
+        <div class="dropdown my-dropdown">
+            <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city2" style="background-color: white; color:black">
+                {% for location in loc %}
+                <option value = "{{location}}" >{{location}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="dropdown my-dropdown">
+            <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city3" style="background-color: white; color:black">
+                {% for location in loc %}
+                <option value = "{{location}}" >{{location}}</option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -91,10 +88,6 @@
         <div class="col">
             <button type="button" onclick="location.href='{% url 'index' %}'" class="btn my-btn col" style="width: 50%">Cancel</button>
         </div>
-    </div>
-</form>
-
-{% endblock %}
-    <button type="submit" class="btn my-btn" style="width: 80%;">Register</button>   
+    </div> 
 </form>
 {% endblock %}

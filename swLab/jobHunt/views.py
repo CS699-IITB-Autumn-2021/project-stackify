@@ -12,8 +12,8 @@ from django.contrib.auth.models import auth
 from django.urls import resolve
 
 # Create your views here.
-locations=["All","Hyderabad","Madhya Pradesh","Uttar Pradesh"]
-titles=["Data Science","Data Analyst","Data Handling","Software Developer"]
+locations=["All","Indore","Banglore","Pune","Hyderbad","Gurugram","Varanasi","Allahabad","Noida","Ghaziabad","Delhi","Mumbai","Ludhiana","Nasik","Mumbai"]
+titles=["Data Science","Data Analyst","Data Handling","Software Developer","Nurse","Clerk","Software tester","HR","Manager"]
 def index(request):
     """
     Redirect the user to the index.html page that is home page of the website.
@@ -40,15 +40,17 @@ def search(request):
     """
     role=request.GET.get("role")
     city=request.GET.get("city")
+    if  role==None and city==None:
+        return redirect('/')
     if(role=="" and city=="All"):
         print("here")
         res_jobs=Job.objects.all()[:10]
     elif(role=="" and city!="All"):
-        res_jobs=Job.objects.filter(location=city)
+        res_jobs=Job.objects.filter(location__contains=city)
     elif(city=="All"):
         res_jobs=Job.objects.filter(tag=role)
     else:
-        res_jobs=Job.objects.filter(tag=role,location=city)
+        res_jobs=Job.objects.filter(tag=role,location__contains=city)
     jobs=[]
     for job in res_jobs:
         exp=job.experience+" years"
@@ -109,6 +111,8 @@ def register(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if request.session['loggedin']:
+        return redirect('/')
     location=locations[:]
     location[0]='No'
     if request.method=="POST":
@@ -248,6 +252,8 @@ def logout(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if not request.session['loggedin']:
+        return redirect('/login')
     request.session['loggedin']=False
     return redirect('/')
 

@@ -23,7 +23,7 @@ app.config_from_object(settings, namespace='CELERY')
 app.conf.beat_schedule={
 	'webscrapper' : {
 		'task' : 'jobHunt.tasks.periodic_update',
-		'schedule' : crontab(hour=10, minute=42),
+		'schedule' : crontab(hour=16, minute=24),
 	}
 }
 
