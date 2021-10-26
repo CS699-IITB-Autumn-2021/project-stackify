@@ -109,6 +109,8 @@ def register(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if request.session['loggedin']:
+        return redirect('/')
     location=locations[:]
     location[0]='No'
     if request.method=="POST":
@@ -248,6 +250,7 @@ def logout(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
-    request.session['loggedin']=False
+    if request.session['loggedin']:
+        request.session['loggedin']=False
     return redirect('/')
 

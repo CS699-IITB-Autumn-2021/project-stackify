@@ -11,9 +11,9 @@
     </div>
       {% endfor %}
     {% if request.session.loggedin and request.session.email %}
-        <input class="my-input" name ="email" type="text" placeholder="Email"  value={{request.session.email}} required readonly="true">
+        <input class="my-input" name ="email" type="email" placeholder="Email"  value={{request.session.email}} required readonly="true">
     {% else %}
-        <input class="my-input" name ="email" type="text" placeholder="Email" required>
+        <input class="my-input" name ="email" type="email" placeholder="Email" required>
     {% endif %}
     <div id="Jobs">
         <br>
