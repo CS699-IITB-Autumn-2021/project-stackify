@@ -40,6 +40,8 @@ def search(request):
     """
     role=request.GET.get("role")
     city=request.GET.get("city")
+    if  role==None and city==None:
+        return redirect('/')
     if(role=="" and city=="All"):
         print("here")
         res_jobs=Job.objects.all()[:10]
@@ -109,6 +111,8 @@ def register(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if request.session['loggedin']:
+        return redirect('/')
     location=locations[:]
     location[0]='No'
     if request.method=="POST":
@@ -248,6 +252,8 @@ def logout(request):
     :return: response - index.html page
     :return type: HttpResponse
     """
+    if not request.session['loggedin']:
+        return redirect('/login')
     request.session['loggedin']=False
     return redirect('/')
 
