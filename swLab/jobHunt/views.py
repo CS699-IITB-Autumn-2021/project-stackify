@@ -12,8 +12,8 @@ from django.contrib.auth.models import auth
 from django.urls import resolve
 
 # Create your views here.
-locations=["All","Hyderabad","Madhya Pradesh","Uttar Pradesh"]
-titles=["Data Science","Data Analyst","Data Handling","Software Developer"]
+locations=["All","Indore","Banglore","Pune","Hyderbad","Gurugram","Varanasi","Allahabad","Noida","Ghaziabad","Delhi","Mumbai","Ludhiana","Nasik","Mumbai"]
+titles=["Data Science","Data Analyst","Data Handling","Software Developer","Nurse","Clerk","Software tester","HR","Manager"]
 def index(request):
     """
     Redirect the user to the index.html page that is home page of the website.
@@ -44,11 +44,11 @@ def search(request):
         print("here")
         res_jobs=Job.objects.all()[:10]
     elif(role=="" and city!="All"):
-        res_jobs=Job.objects.filter(location=city)
+        res_jobs=Job.objects.filter(location__contains=city)
     elif(city=="All"):
         res_jobs=Job.objects.filter(tag=role)
     else:
-        res_jobs=Job.objects.filter(tag=role,location=city)
+        res_jobs=Job.objects.filter(tag=role,location__contains=city)
     jobs=[]
     for job in res_jobs:
         exp=job.experience+" years"

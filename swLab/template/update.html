@@ -2,7 +2,7 @@
 
 {% block contentChild %}
 <h2>Update Preferences</h2>
-<form action="update" method="POST">
+<form action="make_update" method="POST">
     {%csrf_token%}
     {% for error in errors %}
      <div class="alert">
@@ -65,20 +65,21 @@
                 <option value = "{{location}}" >{{location}}</option>
                 {% endfor %}
             </select>
-    </div>
-    <div class="dropdown my-dropdown">
-        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city2" style="background-color: white; color:black">
-            {% for location in loc %}
-            <option value = "{{location}}" >{{location}}</option>
-            {% endfor %}
-        </select>
-</div>
-    <div class="dropdown my-dropdown">
-        <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city3" style="background-color: white; color:black">
-            {% for location in loc %}
-            <option value = "{{location}}" >{{location}}</option>
-            {% endfor %}
-        </select>
+        </div>
+        <div class="dropdown my-dropdown">
+            <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city2" style="background-color: white; color:black">
+                {% for location in loc %}
+                <option value = "{{location}}" >{{location}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="dropdown my-dropdown">
+            <select class="form-select btn my-btn col-12" aria-label="dropdownMenu" name="city3" style="background-color: white; color:black">
+                {% for location in loc %}
+                <option value = "{{location}}" >{{location}}</option>
+                {% endfor %}
+            </select>
+        </div>
     </div>
     <div class="row">
         <div class="col">
@@ -87,7 +88,6 @@
         <div class="col">
             <button type="button" onclick="location.href='{% url 'index' %}'" class="btn my-btn col" style="width: 50%">Cancel</button>
         </div>
-    </div>
+    </div> 
 </form>
-
 {% endblock %}

@@ -3,7 +3,7 @@
 {% block contentChild %}
 
 <h2>Login</h2>
-<form action="login" method="POST">
+<form action="verify_login" method="POST">
     {% csrf_token %}
     {% for msg in messages %}
      <div class="alert">
