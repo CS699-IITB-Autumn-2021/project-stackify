@@ -39,6 +39,8 @@ that we can show data to user instantly.
 
 # Hardware/Software Requirements
 
+
+
 **Google Chrome**
 
 **python3**
