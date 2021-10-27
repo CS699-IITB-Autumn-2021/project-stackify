@@ -6,7 +6,7 @@ Our idea is to Design a job search engine which will display jobs available on v
 
 # Target audience
 
-This web Application can used by interns,freshers applying for jobs,anyone who is in need of job.
+
 
 # Features 
 
@@ -38,6 +38,10 @@ This web Application can used by interns,freshers applying for jobs,anyone who i
 
 #  How to operate
 Adding steps of requirements.txt
+
+# Primary stakeholders
+
+This web Application can used by interns,freshers applying for jobs,anyone who is in need of job.
 
 # Teams Details
 
