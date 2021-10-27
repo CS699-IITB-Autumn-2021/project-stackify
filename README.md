@@ -18,7 +18,7 @@ our website supports login and logout operations.
 
 we notify user of new jobs daily.
 
-**web scrapping**
+**Web scrapping**
 
 we have used two different websites for webscarapping i.e. indeed.com and naukri.com .we  used different server for scrapping data asynchronously so
 
