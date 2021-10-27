@@ -62,3 +62,5 @@ Subodh Shantaram Latkar
 
 # Documentation
 >swLab/docs/_build/html/index.html
+
+[index.html](https://github.com/CS699-IITB-Autumn-2021/project-stackify/blob/subodh/swLab/docs/_build/html/index.html)
