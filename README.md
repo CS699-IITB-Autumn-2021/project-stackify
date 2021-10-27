@@ -44,8 +44,16 @@ Pentium IV or higher, (PIV-300GHz recommended)
 
 1 Gb hard free drive space
 
-Google Chrome
+CSS
 
+HTML
+
+JavaScript
+
+Web Browser:  Google Chrome 
+
+SQLite3  (back-end)
+  
 python3
 
 #  How to operate
