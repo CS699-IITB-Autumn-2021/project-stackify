@@ -57,7 +57,24 @@ SQLite3  (back-end)
 python3
 
 #  How to operate
-Adding steps of requirements.txt
+
+Install following package
+
+beautifulsoup4 4.10.0v or above
+
+Django 3.2.7v or above
+
+pandas 1.3.4v or above
+
+selenium 4.0.0v or above
+
+webdriver_manager 3.5.1v or above
+
+after installing all these packages run 
+
+>python3 manage.py migrate
+
+>python3 manage.py runserver --noreload
 
 # Primary stakeholders
 
