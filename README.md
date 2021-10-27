@@ -6,7 +6,7 @@ Our idea is to Design a job search engine which will display jobs available on v
 
 # Target audience
 
-
+JobHunt it makes job seekers job Hunting easy.
 
 # Features 
 
