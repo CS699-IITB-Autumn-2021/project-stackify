@@ -4,6 +4,10 @@ With growing number of job portals it have become hectic and difficult to find r
 
 Our idea is to Design a job search engine which will display jobs available on various job portal on one click.This will save a lot of time and effort for end user
 
+# target audience
+
+This web Application can used by interns,freshers applying for jobs,anyone who is in need of job.
+
 # Features 
 
 **easy to use**
@@ -24,11 +28,13 @@ Our idea is to Design a job search engine which will display jobs available on v
 
 # Deliverables
 
-:heavy_check_mark:   A fully Functional WebPortal with all features Working.
+:heavy_check_mark:   A fully Functional WebPortal with all features Working i.e. notification ,no data duplication and proper data retrieval.
 
 # Hardware/Software Requirements
 
 **Google Chrome**
+
+**python3**
 
 #  How to operate
 Adding steps of requirements.txt
