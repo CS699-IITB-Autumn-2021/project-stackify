@@ -10,13 +10,20 @@ Our idea is to Design a job search engine which will display jobs available on v
 
 # Features 
 
-**easy to use**
+**Login/Logut**
 
-**saves time and efforts**
+our website supports login and logout operations.
 
-**notifies of  recent jobs announcement via mail**
+**Notifies of recent jobs announcement via mail**
 
-**flexible to changes**
+we notify user of new jobs daily.
+
+**web scrapping**
+
+we have used two different websites for webscarapping i.e. indeed.com and naukri.com .we  used different server for scrapping data asynchronously so
+
+that we can show data to user instantly.
+
 
 # Technology Stack
 | FrontEnd | BackEnd | 
