@@ -4,7 +4,7 @@ With growing number of job portals it have become hectic and difficult to find r
 
 Our idea is to Design a job search engine which will display jobs available on various job portal on one click.This will save a lot of time and effort for end user
 
-# target audience
+# Target audience
 
 This web Application can used by interns,freshers applying for jobs,anyone who is in need of job.
 
